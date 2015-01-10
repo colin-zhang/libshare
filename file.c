@@ -361,7 +361,7 @@ FILE *std_open_file(uint8_t *lpFile,uint8_t *lpMode)
 			{
 				memset(temp,0,sizeof(temp));				
 				memcpy(temp,lpFile,i-1);
-				if(!make_dir(temp,0666)){						
+				if(make_dir(temp,0766)){						
 					return NULL;
 				}
 				fp = fopen(lpFile,"wb+");						

@@ -18,10 +18,13 @@ void led_green_flash(){
 }
 
 int main(){
-
-	//std_write_file("/opt/colin/zhang/hi","hello\n",6);
-	//std_write_file("/opt/zhang","hello\n",6);
-	//std_write_file("hi","hello\n",6);
+	int ret =0;
+	ret = std_write_file("/opt/colin/zhang/hi","hello\n",6);
+	printf("ret = %d\n",ret);
+	ret = std_write_file("/opt/zhang","hello\n",6);
+	printf("ret = %d\n", ret);
+	ret = std_write_file("hi","hello\n",6);
+	printf("ret = %d\n",ret );
 	//led_green_on();
 	std_write_file("/sys/devices/platform/s3c24xx_led.1/leds/led1/brightness","0",1);
 
