@@ -2,17 +2,29 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <signal.h>
 #include <dirent.h>
 
-#include "file.h"
-
-int read_string(const char *path,char* buf,int buf_len)
+int f_read(const char *path, void *buffer, int max)
 {
-	int ret=0;
-	std_read_file(path,buf,0,&ret);
-	return ret;
+	int f;
+	int n;
+
+	if ((f = open(path, O_RDONLY)) < 0) return -1;
+	n = read(f, buffer, max);
+	close(f);
+	return n;
 }
+
+int read_string(const char *path, char *buffer, int max)
+{
+	if (max <= 0) return -1;
+	int n = f_read(path, buffer, max - 1);
+	buffer[(n > 0) ? n : 0] = 0;
+	return n;
+}
+
 
 char *ps_name(int pid, char *buffer, int maxlen)
 {

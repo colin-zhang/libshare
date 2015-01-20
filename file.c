@@ -1,9 +1,9 @@
 /***********************************************************/
-/*                     _                                   */
-/*        ___         | |   _                              */
-/*      //      ___   | |  /_\  |\ ||                      */
-/*     ||      / _ \  | |  | |  | \ |                      */
-/*      \\___  \___/  |_|  |_|  || \|                      */
+/*                   _                                     */
+/*        ___       | |                                    */
+/*      //     ___  | | || |\ ||                           */
+/*     ||     / _ \ | | || ||\||                           */
+/*      \\___ \___/ |_| || || \|                           */
 /*                                                 @2014   */
 /***********************************************************/
 
@@ -219,13 +219,14 @@ char *file_to_alloc_mem(const char *path,int *file_len_out)
 		return NULL;
 	}
 
-	fread(contents, file_len, 1, file);
+	fread(contents, 1, file_len, file);
+
 	fclose(file);
 
 	contents[file_len] = '\0';
 
 	if (file_len_out)
-	*file_len_out = file_len + 1;
+	*file_len_out = file_len;
 
 	return contents;
 }
@@ -361,7 +362,7 @@ FILE *std_open_file(uint8_t *lpFile,uint8_t *lpMode)
 			{
 				memset(temp,0,sizeof(temp));				
 				memcpy(temp,lpFile,i-1);
-				if(make_dir(temp,0766)){						
+				if(make_dir(temp,0777)){						
 					return NULL;
 				}
 				fp = fopen(lpFile,"wb+");						
