@@ -2,8 +2,6 @@
 
 ### test
 
- **StackEdit**
-
 ```c
 int test(){
 	int ret =0;
