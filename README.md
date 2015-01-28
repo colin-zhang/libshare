@@ -1,4 +1,4 @@
-# libshare
+# libsilly
 
 ### test
 
@@ -21,4 +21,4 @@ int test(){
 > - Can alse find [libshare] on the web.
 
 
-[libshare]: https://github.com/colin-zhang/libshare
+[libsilly]: https://github.com/colin-zhang/libsilly
